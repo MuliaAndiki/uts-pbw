@@ -1,6 +1,6 @@
-import Login from "./(pages)/login/page";
+import Home from "./(pages)/home/page";
 const Router = () => {
-  return <Login />;
+  return <Home />;
 };
 
 export default Router;
