@@ -2,11 +2,13 @@
 import { useState } from "react";
 import API from "@/app/utils/API";
 import { modalProps } from "@/app/type";
-import { useHook } from "@/app/components/contex/contex";
 import Modal from "@/app/components/modal/modal";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/app/components/navbar/nabvar";
+
 const Register = () => {
-  const { setCurrent } = useHook();
   const [email, setEmail] = useState<string>("");
   const [fullName, setFullName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,7 +28,7 @@ const Register = () => {
         setModal({
           title: "Berhasil Login",
           icon: "success",
-          deskripsi: "Selamat Datang Di KostHub",
+          deskripsi: "Selamat Datang",
           confirmButtonText: "lanjut",
           confirmButtonColor: "#3572EF",
           onClose: () => {
@@ -49,60 +51,84 @@ const Register = () => {
       });
   };
   return (
-    <div className="w-screen h-screen flex justify-center items-center ">
-      <div className="flex justify-center items-center bg-white h-[50vh] w-[50vw] rounded-md">
-        <div className="grid grid-cols-2 grid-rows-1 shadow-lg border-1">
-          <div className="bg-sky-600 h-[50vh] flex justify-center items-center w-[51vh]">
-            <h1 className="">Ini kiri</h1>
-          </div>
-          <div className="flex justify-center items-center">
-            <form onSubmit={handleRegister}>
-              <label
-                htmlFor=""
-                className="font-bold text-sky-600 hover:underline text-[2rem] p-2 flex justify-center"
-              >
-                Register:
-              </label>
-              <div className="">
-                <div className="m-[1rem]">
-                  <input
-                    type="email"
-                    className="border-1 rounded-md bg-amber-50 w-[13vw] h-[4vh] p-2"
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="m-[1rem]">
-                  <input
-                    type="text"
-                    className="border-1 rounded-md bg-amber-50 w-[13vw] h-[4vh] p-2"
-                    placeholder="Nama"
-                    onChange={(e) => setFullName(e.target.value)}
-                  />
-                </div>
-                <div className="m-[1rem]">
-                  <input
-                    type="password"
-                    className="border-1 rounded-md bg-amber-50 w-[13vw] h-[4vh] p-2"
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="m-[1rem]">
-                  <button
-                    className="border-2 bg-amber-50 w-[13vw] rounded-md"
-                    type="submit"
-                  >
-                    Register
-                  </button>
+    <>
+      <Navbar />
+      <div className="w-screen min-h-screen flex justify-center items-center ">
+        <div className="flex justify-center items-center shadow-lg h-[50vh] w-[50vw] rounded-md">
+          <div className="w-[100vh] ">
+            <div className="grid grid-cols-2 grid-rows-1 shadow-lg border-1">
+              <div className="bg-sky-600 h-[50vh] flex justify-center items-center ">
+                <div className="flex-col items-center justify-center p-[1rem]">
+                  {/* <Image src={} width={} height={} alt=""></Image> */}
+                  <h1 className="flex justify-center ">Todo Kita</h1>
+                  <p className="italic">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ipsa aliquam itaque accusamus, architecto pariatur nobis
+                    voluptatem sed quam modi! Deserunt laudantium officia est,
+                    necessitatibus architecto facere ex harum magni. Ipsa?
+                  </p>
+                  <div className="flex justify-center">
+                    <Link href="/auth/login">
+                      <button className="p-2 border-2 rounded-md hover:text-white">
+                        Sign In
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-              {modal && <Modal {...modal} />}
-            </form>
+              <div className="flex justify-center items-center">
+                <form onSubmit={handleRegister}>
+                  <label
+                    htmlFor=""
+                    className="font-bold text-sky-600 hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
+                  >
+                    Register:
+                  </label>
+                  <div className="">
+                    <div className="m-[1rem]">
+                      <label htmlFor="">Email:</label>
+                      <br />
+                      <input
+                        type="email"
+                        className="border-1 rounded-md shadow-md w-[13vw] hover:shadow-sky-500 h-[4vh] p-2 outline
+                      -none"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="m-[1rem]">
+                      <label htmlFor="">Nama :</label> <br />
+                      <input
+                        type="text"
+                        className="border-1 rounded-md shadow-md w-[13vw] hover:shadow-sky-500 h-[4vh] p-2 outline-none"
+                        onChange={(e) => setFullName(e.target.value)}
+                      />
+                    </div>
+                    <div className="m-[1rem]">
+                      <label htmlFor="">Password:</label>
+                      <br />
+                      <input
+                        type="password"
+                        className="border-1 rounded-md shadow-md hover:shadow-sky-500 w-[13vw] h-[4vh] p-2 outline-none"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                    <div className="m-[1rem]">
+                      <button
+                        className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500"
+                        type="submit"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </div>
+                  {modal && <Modal {...modal} />}
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Register;

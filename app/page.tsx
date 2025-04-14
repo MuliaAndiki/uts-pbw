@@ -1,6 +1,6 @@
-import Home from "./(pages)/home/page";
+import LandingPage from "./(pages)/landingpage/page";
 const Router = () => {
-  return <Home />;
+  return <LandingPage />;
 };
 
 export default Router;

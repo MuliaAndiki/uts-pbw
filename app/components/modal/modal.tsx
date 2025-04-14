@@ -22,11 +22,11 @@ const Modal: React.FC<modalProps> = ({
         onClose();
       }
     });
-    useEffect(() => {
-      showModal();
-    }, []);
   };
-
+  useEffect(() => {
+    showModal();
+  }, []);
   return null;
 };
+
 export default Modal;
