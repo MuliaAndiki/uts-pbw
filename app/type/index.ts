@@ -12,3 +12,11 @@ export interface authPros {
   fullName: string;
   password: string;
 }
+
+export interface todosPros {
+  text: string;
+}
+
+export interface tokenPros {
+  token: any;
+}
