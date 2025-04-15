@@ -13,7 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [modal, setModal] = useState<modalProps | null>(null);
-  const { setCurrent, setToken } = useHook();
+  const { setCurrent, setToken, setId } = useHook();
   const Router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -26,10 +26,13 @@ const Login = () => {
         console.log("ress data:", ress.data);
         const user = ress.data.data;
         const token = user.token;
+        const id = user._id;
         localStorage.setItem("curent", JSON.stringify(user));
         localStorage.setItem("token", token);
+        localStorage.setItem("id", id);
         setCurrent(user);
         setToken(token);
+        setId(id);
         setModal({
           title: "Berhasil Login",
           icon: "success",

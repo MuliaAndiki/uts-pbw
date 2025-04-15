@@ -8,9 +8,11 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<todosPros[]>([]);
   const [token, setToken] = useState<tokenPros | null>(null);
   const [isloading, setIsloading] = useState<boolean>(true);
+  const [id, setId] = useState<authPros | null>(null);
   useEffect(() => {
     const curents = localStorage.getItem("curent");
     const tokens = localStorage.getItem("token");
+    const ids = localStorage.getItem("id");
     if (curents) {
       try {
         setCurrent(JSON.parse(curents));
@@ -27,6 +29,14 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
         setToken(null);
       }
     }
+    if (ids) {
+      try {
+        setId(JSON.parse(ids));
+      } catch (err) {
+        console.log("gagal parse id", err);
+        setId(null);
+      }
+    }
   }, []);
   useEffect(() => {
     localStorage.setItem("curent", JSON.stringify(curennt));
@@ -34,6 +44,9 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
   }, [token]);
+  useEffect(() => {
+    localStorage.setItem("id", JSON.stringify(id));
+  }, [id]);
 
   return (
     <contex.Provider
@@ -45,6 +58,8 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
         token,
         setToken,
         isloading,
+        id,
+        setId,
       }}
     >
       {children}

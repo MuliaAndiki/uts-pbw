@@ -7,13 +7,14 @@ import { useHook } from "@/app/components/contex/contex";
 import Modal from "@/app/components/modal/modal";
 import { modalProps } from "@/app/type";
 import Return from "@/app/components/partical/return";
-import { quit } from "@/app/utils/Quit";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Todo = () => {
-  const { todos, setTodos, token, isloading } = useHook();
+  const { todos, setTodos, token, isloading, id } = useHook();
   const [text, setText] = useState<string>("");
   const [modaData, setModalData] = useState<modalProps | null>(null);
+  const router = useRouter();
 
   const handleTodo = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +57,38 @@ const Todo = () => {
       });
   };
   const handleLoqout = () => {
-    quit();
+    API.post(`/auth/logout/${(id as any)._id}`, null, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        console.log("Logout berhasil", res);
+        setModalData({
+          title: "Berhasil Keluar",
+          icon: "success",
+          deskripsi: "BABAY",
+          confirmButtonText: "lanjut",
+          confirmButtonColor: "#3572EF",
+          onClose: () => {
+            router.push("/landingpage");
+            setTodos([]);
+            localStorage.removeItem("curent");
+            localStorage.removeItem("token");
+            localStorage.removeItem("id");
+          },
+        });
+      })
+      .catch((err) => {
+        setModalData({
+          title: "Gagal Keluar",
+          icon: "error",
+          deskripsi: "Coba Lagi",
+          confirmButtonText: "lanjut",
+          confirmButtonColor: "#3572EF",
+          onClose: () => {
+            setModalData(null);
+          },
+        });
+      });
   };
 
   return (

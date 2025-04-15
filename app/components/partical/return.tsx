@@ -6,35 +6,9 @@ import API from "@/app/utils/API";
 const Return: React.FC<returnPros> = ({ todo, index }) => {
   const { token, todos, setTodos } = useHook();
   const [checklist, setChecklist] = useState<boolean>(todo.onCheckList);
+
   const [edit, setEdit] = useState<boolean>(false);
   const [textEdit, setTextEdit] = useState<string>(todo.text);
-
-  const handleChecklist = () => {
-    const updatedChecklist = !checklist;
-
-    API.put(
-      `/todo/updateTodo/${todo._id}`,
-      {
-        onCheckList: updatedChecklist,
-        text: todo.text,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
-      .then(() => {
-        setChecklist(updatedChecklist);
-        const updateTodos = todos.map((prev) =>
-          prev._id === todo._id
-            ? { ...prev, onCheckList: updatedChecklist }
-            : prev
-        );
-        setTodos(updateTodos);
-      })
-      .catch((err) => {
-        console.log("Checklist Gagal", err.response?.data || err.message);
-      });
-  };
 
   const handleEdit = () => {
     API.put(
@@ -51,7 +25,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
         setEdit(false);
         const updateTodos = todos.map((prev) =>
           prev._id === todo._id
-            ? { ...prev, text: textEdit, onCheckList: checklist }
+            ? { ...prev, text: textEdit, onChecklist: checklist }
             : prev
         );
         setTodos(updateTodos);
@@ -81,7 +55,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
           type="checkbox"
           className="border-2 rounded-md"
           checked={checklist}
-          onChange={handleChecklist}
+          onChange={() => setChecklist(!checklist)}
         />
         {edit ? (
           <input
@@ -102,7 +76,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
             <button
               type="button"
               onClick={handleEdit}
-              className="bg-green-500 text-white px-2 rounded"
+              className="bg-sky-500 text-white px-2 rounded"
             >
               Simpan
             </button>

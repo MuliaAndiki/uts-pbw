@@ -11,6 +11,8 @@ const contex = createContext<{
   token: tokenPros | null;
   setToken: React.Dispatch<React.SetStateAction<tokenPros | null>>;
   isloading: boolean;
+  id: authPros | null;
+  setId: React.Dispatch<React.SetStateAction<authPros | null>>;
 } | null>(null);
 
 export const useHook = () => {
