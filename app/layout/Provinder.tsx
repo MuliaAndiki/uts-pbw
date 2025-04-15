@@ -7,24 +7,16 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
   const [curennt, setCurrent] = useState<authPros | null>(null);
   const [todos, setTodos] = useState<todosPros[]>([]);
   const [token, setToken] = useState<tokenPros | null>(null);
+  const [isloading, setIsloading] = useState<boolean>(true);
   useEffect(() => {
     const curents = localStorage.getItem("curent");
-    const todo = localStorage.getItem("todos");
-    const tokens = localStorage.getItem("curent");
+    const tokens = localStorage.getItem("token");
     if (curents) {
       try {
         setCurrent(JSON.parse(curents));
       } catch (err) {
         console.log("gagal data dari curennt:", err);
         setCurrent(null);
-      }
-    }
-    if (todo) {
-      try {
-        setTodos(JSON.parse(todo));
-      } catch (err) {
-        console.log("gagal parse dari todos:", err);
-        setTodos([]);
       }
     }
     if (tokens) {
@@ -35,15 +27,12 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
         setToken(null);
       }
     }
-  });
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  }, []);
   useEffect(() => {
     localStorage.setItem("curent", JSON.stringify(curennt));
   }, [curennt]);
   useEffect(() => {
-    localStorage.setItem("curent", JSON.stringify(token));
+    localStorage.setItem("token", JSON.stringify(token));
   }, [token]);
 
   return (
@@ -55,6 +44,7 @@ export const Provinder = ({ children }: { children: React.ReactNode }) => {
         setTodos,
         token,
         setToken,
+        isloading,
       }}
     >
       {children}

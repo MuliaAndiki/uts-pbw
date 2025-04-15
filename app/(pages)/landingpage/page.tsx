@@ -3,8 +3,10 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
-      <div className="">
-        <h1>ini page landingpage</h1>
+      <div className="w-screen h-screen flex justify-center items-center">
+        <div className="flex justify-center items-center">
+          <h1 className="font-bold">ini landing page</h1>
+        </div>
       </div>
     </>
   );

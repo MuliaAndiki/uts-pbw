@@ -10,6 +10,7 @@ const contex = createContext<{
   setTodos: React.Dispatch<React.SetStateAction<todosPros[]>>;
   token: tokenPros | null;
   setToken: React.Dispatch<React.SetStateAction<tokenPros | null>>;
+  isloading: boolean;
 } | null>(null);
 
 export const useHook = () => {

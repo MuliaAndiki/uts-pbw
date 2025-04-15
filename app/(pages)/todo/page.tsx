@@ -6,16 +6,30 @@ import Navbar from "@/app/components/navbar/nabvar";
 import { useHook } from "@/app/components/contex/contex";
 import Modal from "@/app/components/modal/modal";
 import { modalProps } from "@/app/type";
+import Return from "@/app/components/partical/return";
+import { quit } from "@/app/utils/Quit";
+import Link from "next/link";
+
 const Todo = () => {
+  const { todos, setTodos, token, isloading } = useHook();
   const [text, setText] = useState<string>("");
   const [modaData, setModalData] = useState<modalProps | null>(null);
+
   const handleTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    API.post("todo/createTodo", {
-      text,
-    })
+    API.post(
+      "/todo/createTodo",
+      { text },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => {
         console.log(res.data);
+        setTodos((prev) => [...prev, res.data.data]);
+        console.log("data todos", todos);
         setModalData({
           title: "todo Berhasil Di tambahkan",
           icon: "success",
@@ -26,6 +40,7 @@ const Todo = () => {
             setModalData(null);
           },
         });
+        setText("");
       })
       .catch((err) => {
         setModalData({
@@ -40,24 +55,49 @@ const Todo = () => {
         });
       });
   };
+  const handleLoqout = () => {
+    quit();
+  };
+
   return (
     <>
       <Navbar />
-      <div className="h-screen w-screen flex justify-center items-center  ">
-        <div className="flex-col justify-center items-center text-center">
-          <form>
-            <label
-              htmlFor=""
-              className="text-[2rem] font-bold hover:text-sky-400 duration-[1s] "
-            >
-              Todo :
-            </label>
-            <div className="flex rounded-md border-2 p-1 w-[80vw]">
-              <input type="text" className="w-[80vw] outline-none" />
-              <ListTodo />
-            </div>
-          </form>
-          {modaData && <Modal {...modaData} />}
+      <div className="h-screen w-screen flex justify-center items-center">
+        <div className="flex justify-center items-center">
+          <div className="flex-col justify-center items-center text-center">
+            <form onSubmit={handleTodo}>
+              <label
+                htmlFor=""
+                className="text-[2rem] font-bold hover:text-sky-400 duration-[1s] "
+              >
+                TodoList :
+              </label>
+              <div className="flex rounded-md border-2 p-1 w-[80vw] ">
+                <input
+                  type="text"
+                  className="w-[80vw] outline-none"
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Masukan Todo Kamu..."
+                />
+                <ListTodo />
+                <button
+                  className="border-2 rounded-md px-2 hover:bg-sky-600 duration-[1s] mx-2"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+            {modaData && <Modal {...modaData} />}
+            {todos.map((todo, index) => (
+              <Return key={index} todo={todo} index={index} />
+            ))}
+          </div>
+          <Link href="/landingpage">
+            <button onClick={handleLoqout} className="border-2 rounded-md">
+              Quit
+            </button>
+          </Link>
         </div>
       </div>
     </>

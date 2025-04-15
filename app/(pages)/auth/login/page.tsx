@@ -7,11 +7,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/app/components/navbar/nabvar";
+import { useHook } from "@/app/components/contex/contex";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [modal, setModal] = useState<modalProps | null>(null);
+  const { setCurrent, setToken } = useHook();
   const Router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -21,8 +23,13 @@ const Login = () => {
       password,
     })
       .then((ress) => {
-        console.log(ress.data);
-        localStorage.setItem("curent", JSON.stringify(ress.data));
+        console.log("ress data:", ress.data);
+        const user = ress.data.data;
+        const token = user.token;
+        localStorage.setItem("curent", JSON.stringify(user));
+        localStorage.setItem("token", token);
+        setCurrent(user);
+        setToken(token);
         setModal({
           title: "Berhasil Login",
           icon: "success",
@@ -31,16 +38,16 @@ const Login = () => {
           confirmButtonColor: "#3572EF",
           onClose: () => {
             setModal(null);
-            Router.push("/home");
+            Router.push("/todo");
           },
         });
       })
       .catch((err) => {
         setModal({
-          title: "Berhasil Login",
+          title: "Gagal Login",
           icon: "error",
-          deskripsi: "Selamat Datang",
-          confirmButtonText: "lanjut",
+          deskripsi: "try again",
+          confirmButtonText: "try",
           confirmButtonColor: "#3572EF",
           onClose: () => {
             setModal(null);

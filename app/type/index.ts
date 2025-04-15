@@ -14,9 +14,16 @@ export interface authPros {
 }
 
 export interface todosPros {
-  text: string;
+  _id: any;
+  text: any;
+  onCheckList: any;
 }
 
 export interface tokenPros {
-  token: any;
+  token: string;
+}
+
+export interface returnPros {
+  todo: todosPros;
+  index: number;
 }

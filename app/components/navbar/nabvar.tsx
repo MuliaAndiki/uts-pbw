@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
         </Link>
         <Link href="/auth/login">
           <div className="flex gap-x-2">
-            <h1 className="italic">Sign In</h1>
+            <h1 className="italic">Sign Out</h1>
             <LogIn />
           </div>
         </Link>
