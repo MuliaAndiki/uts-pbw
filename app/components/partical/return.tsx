@@ -11,6 +11,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
   const [textEdit, setTextEdit] = useState<string>(todo.text);
 
   const handleEdit = () => {
+    setTextEdit(todo.text);
     API.put(
       `/todo/updateTodo/${todo._id}`,
       {
@@ -31,7 +32,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
         setTodos(updateTodos);
       })
       .catch((err) => {
-        console.log("Edit Gagal",err);
+        console.log("Edit Gagal", err);
       });
   };
 
@@ -65,9 +66,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
             className="border px-2 py-1 rounded-md"
           />
         ) : (
-          <p className={`font-semibold ${checklist ? "line-through" : ""}`}>
-            {todo.text}
-          </p>
+          <p className={`font-semibold ${checklist ? "" : ""}`}>{todo.text}</p>
         )}
       </div>
       <div className="flex gap-[1rem]">

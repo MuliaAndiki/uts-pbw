@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LayoutDashboard, LogIn } from "lucide-react";
+
 const Navbar: React.FC = () => {
   return (
     <div className=" flexjustify-center">

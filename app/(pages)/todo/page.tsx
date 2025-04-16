@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Todo = () => {
-  const { todos, setTodos, token, isloading, id } = useHook();
+  const { todos, setTodos, token, isloading, id, curennt } = useHook();
   const [text, setText] = useState<string>("");
   const [modaData, setModalData] = useState<modalProps | null>(null);
   const router = useRouter();
@@ -57,7 +57,6 @@ const Todo = () => {
       });
   };
   const handleLoqout = () => {
-    if (!id) return;
     API.post(`/auth/logout/${id}`, null, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -71,7 +70,6 @@ const Todo = () => {
           confirmButtonColor: "#3572EF",
           onClose: () => {
             router.push("/landingpage");
-            setTodos([]);
             localStorage.removeItem("curent");
             localStorage.removeItem("token");
             localStorage.removeItem("id");
@@ -103,7 +101,7 @@ const Todo = () => {
                 htmlFor=""
                 className="text-[2rem] font-bold hover:text-sky-400 duration-[1s] "
               >
-                TodoList :
+                TodoList : {curennt ? curennt.fullName : "guest"}
               </label>
               <div className="flex rounded-md border-2 p-1 w-[80vw] ">
                 <input

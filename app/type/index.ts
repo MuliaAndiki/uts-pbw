@@ -20,7 +20,7 @@ export interface todosPros {
 }
 
 export interface tokenPros {
-  token: string;
+  token: any;
 }
 
 export interface returnPros {

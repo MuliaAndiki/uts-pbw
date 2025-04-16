@@ -4,16 +4,16 @@ import Modal from "@/app/components/modal/modal";
 import { modalProps } from "@/app/type";
 import API from "@/app/utils/API";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/app/components/navbar/nabvar";
 import { useHook } from "@/app/components/contex/contex";
+import fetchTodos from "@/app/utils/Featch";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [modal, setModal] = useState<modalProps | null>(null);
-  const { setCurrent, setToken, setId } = useHook();
+  const { setCurrent, setToken, setId, setTodos } = useHook();
   const Router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -25,14 +25,19 @@ const Login = () => {
       .then((ress) => {
         console.log("ress data:", ress.data);
         const user = ress.data.data;
-        const token = user.token;
+        const userToken = ress.data.data.token;
         const id = user._id;
         localStorage.setItem("curent", JSON.stringify(user));
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", JSON.stringify(userToken));
         localStorage.setItem("id", id);
         setCurrent(user);
-        setToken(token);
+        setToken(userToken);
         setId(id);
+
+        const fetchAfterLogin = () => {
+          fetchTodos(userToken, setTodos);
+          Router.push("/todo");
+        };
         setModal({
           title: "Berhasil Login",
           icon: "success",
@@ -42,6 +47,7 @@ const Login = () => {
           onClose: () => {
             setModal(null);
             Router.push("/todo");
+            fetchAfterLogin();
           },
         });
       })
