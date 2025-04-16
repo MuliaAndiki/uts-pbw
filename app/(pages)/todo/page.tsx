@@ -57,7 +57,8 @@ const Todo = () => {
       });
   };
   const handleLoqout = () => {
-    API.post(`/auth/logout/${(id as any)._id}`, null, {
+    if (!id) return;
+    API.post(`/auth/logout/${id}`, null, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -125,11 +126,9 @@ const Todo = () => {
               <Return key={index} todo={todo} index={index} />
             ))}
           </div>
-          <Link href="/landingpage">
-            <button onClick={handleLoqout} className="border-2 rounded-md">
-              Quit
-            </button>
-          </Link>
+          <button onClick={handleLoqout} className="border-2 rounded-md">
+            Quit
+          </button>
         </div>
       </div>
     </>

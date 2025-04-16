@@ -31,7 +31,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
         setTodos(updateTodos);
       })
       .catch((err) => {
-        console.log("Edit Gagal", err.response?.data || err.message);
+        console.log("Edit Gagal",err);
       });
   };
 
