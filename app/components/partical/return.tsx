@@ -135,7 +135,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
               onClick={() => {
                 setTextEdit(todo.text), setEdit(false);
               }}
-              className="bg-gray-500 text-white px-2 rounded duration-[0.3s] hover:scale-105 hover:bg-gray-600"
+              className="bg-gray-500 text-white px-2 rounded duration-[0.3s] hover:scale-105 hover:bg-gray-600 font-mono"
             >
               Batal
             </button>
@@ -143,7 +143,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
         ) : (
           <button
             type="button"
-            className="border-b-1 rounded-md px-4 hover:scale-105 duration-[0.3s] p-2 bg-sky-400 text-white hover:bg-sky-600 font-semibold "
+            className="border-b-1 rounded-md px-4 hover:scale-105 duration-[0.3s] p-2 bg-sky-400 text-white hover:bg-sky-600 font-mono "
             onClick={() => {
               setEdit(true);
             }}
@@ -153,7 +153,7 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
         )}
         <button
           type="button"
-          className="border-b-1 rounded-md px-2 hover:scale-105 duration-[0.3s] bg-red-400 font-semibold text-white hover:bg-red-600 p-2"
+          className="border-b-1 rounded-md px-2 hover:scale-105 duration-[0.3s] bg-red-400 font-semibold text-white hover:bg-red-600 p-2 font-mono"
           onClick={handleDelete}
         >
           Hapus

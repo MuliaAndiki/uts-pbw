@@ -60,16 +60,18 @@ const Register = () => {
               <div className="bg-sky-600 h-[50vh] flex justify-center items-center ">
                 <div className="flex-col items-center justify-center p-[1rem]">
                   {/* <Image src={} width={} height={} alt=""></Image> */}
-                  <h1 className="flex justify-center ">Todo Kita</h1>
-                  <p className="italic">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Ipsa aliquam itaque accusamus, architecto pariatur nobis
-                    voluptatem sed quam modi! Deserunt laudantium officia est,
-                    necessitatibus architecto facere ex harum magni. Ipsa?
+                  <h1 className="flex justify-center font-mono text-[2rem]">
+                    Todo Kita
+                  </h1>
+                  <p className="text-center font-mono">
+                    Hari ini aku gak harus sempurna. Cukup bergerak, cukup
+                    mencoba, cukup jadi sedikit lebih baik dari kemarin. Semua
+                    hal besar dimulai dari langkah kecil yang dilakukan dengan
+                    hati tenang.
                   </p>
                   <div className="flex justify-center">
                     <Link href="/auth/login">
-                      <button className="px-2 border-2 rounded-md hover:text-white duration-[0.3s]">
+                      <button className="p-1 border-2 rounded-md hover:text-white duration-[0.3s] mt-3 font-mono">
                         Sign In
                       </button>
                     </Link>
@@ -80,13 +82,15 @@ const Register = () => {
                 <form onSubmit={handleRegister}>
                   <label
                     htmlFor=""
-                    className="font-bold text-sky-600 hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
+                    className="font-bold text-sky-600 hover:shadow-sky-500 text-[3rem] p-2 flex justify-center font-mono"
                   >
                     Register
                   </label>
                   <div className="">
                     <div className="m-[1rem]">
-                      <label htmlFor="">Email:</label>
+                      <label htmlFor="" className="font-mono">
+                        Email:
+                      </label>
                       <br />
                       <input
                         type="email"
@@ -95,7 +99,7 @@ const Register = () => {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
-                    <div className="m-[1rem]">
+                    <div className="m-[1rem] font-mono">
                       <label htmlFor="">Nama :</label> <br />
                       <input
                         type="text"
@@ -103,7 +107,7 @@ const Register = () => {
                         onChange={(e) => setFullName(e.target.value)}
                       />
                     </div>
-                    <div className="m-[1rem]">
+                    <div className="m-[1rem] font-mono">
                       <label htmlFor="">Password:</label>
                       <br />
                       <input
@@ -114,7 +118,7 @@ const Register = () => {
                     </div>
                     <div className="m-[1rem]">
                       <button
-                        className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500"
+                        className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500 font-mono"
                         type="submit"
                       >
                         Register

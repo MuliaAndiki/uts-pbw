@@ -6,14 +6,14 @@ const Navbar: React.FC = () => {
     <div className=" flexjustify-center">
       <div className="flex justify-around w-full">
         <Link href="/landingpage">
-          <div className="flex gap-x-3">
-            <h1 className="italic">Home</h1>
+          <div className="flex gap-x-2 items-center hover:scale-105 duration-[0.3s]">
+            <h1 className="font-mono">Home</h1>
             <LayoutDashboard />
           </div>
         </Link>
         <Link href="https://github.com/MuliaAndiki/uts-pbw">
-          <div className="flex">
-            <h1 className="italic">Github</h1>
+          <div className="flex hover:scale-105 duration-[0.3s]">
+            <h1 className="font-mono ">Github</h1>
           </div>
         </Link>
       </div>

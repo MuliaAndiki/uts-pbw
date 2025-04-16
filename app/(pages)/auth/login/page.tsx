@@ -77,7 +77,7 @@ const Login = () => {
                   <form onSubmit={handleLogin}>
                     <label
                       htmlFor=""
-                      className="font-bold text-sky-600  hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
+                      className="font-bold text-sky-600  hover:shadow-sky-500 text-[3rem] p-2 flex justify-center font-mono"
                     >
                       Login
                     </label>
@@ -101,7 +101,7 @@ const Login = () => {
                       </div>
                       <div className="m-[1rem]">
                         <button
-                          className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500"
+                          className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500 font-mono"
                           type="submit"
                         >
                           Login
@@ -116,18 +116,19 @@ const Login = () => {
                 <div className="flex p-[1rem] justify-center items-center">
                   {/* <Image src={} alt="" width={} height={} /> */}
                   <div className="flex-col justify-center items-center">
-                    <h1 className="italic text-center">Todo List</h1>
-                    <p className="text-center">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Corrupti, qui harum. Non quis sequi eum iste voluptate.
-                      Perspiciatis perferendis saepe, molestias ullam soluta
-                      consequatur cupiditate est iure at non eum!
+                    <h1 className="font-mono text-center text-[2rem] mb-3">
+                      Todo List
+                    </h1>
+                    <p className="text-center font-mono">
+                      “Hari ini, jangan cuma hidup—taklukkan. Satu tugas, satu
+                      langkah maju. Gagal gak masalah, asal jangan diam. Ceklist
+                      itu bukti kamu bergerak. Let's go, pejuang mimpi!”
                     </p>
 
                     <div className="flex justify-center">
                       <Link href="/auth/register">
-                        <button className="border-2 rounded-md hover:text-white px-2 duration-[0.3s] hover:shadow-lg shadow-cyan-500/50">
-                          sign up
+                        <button className="border-2 rounded-md hover:text-white px-2 duration-[0.3s] hover:shadow-lg shadow-cyan-500/50 font-mono mt-3">
+                          Sign up
                         </button>
                       </Link>
                     </div>
