@@ -69,7 +69,7 @@ const Register = () => {
                   </p>
                   <div className="flex justify-center">
                     <Link href="/auth/login">
-                      <button className="p-2 border-2 rounded-md hover:text-white">
+                      <button className="px-2 border-2 rounded-md hover:text-white duration-[0.3s]">
                         Sign In
                       </button>
                     </Link>
@@ -82,7 +82,7 @@ const Register = () => {
                     htmlFor=""
                     className="font-bold text-sky-600 hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
                   >
-                    Register:
+                    Register
                   </label>
                   <div className="">
                     <div className="m-[1rem]">

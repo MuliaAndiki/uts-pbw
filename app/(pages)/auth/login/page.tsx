@@ -79,7 +79,7 @@ const Login = () => {
                       htmlFor=""
                       className="font-bold text-sky-600  hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
                     >
-                      Login:
+                      Login
                     </label>
                     <div className="">
                       <div className="m-[1rem]">
@@ -126,7 +126,7 @@ const Login = () => {
 
                     <div className="flex justify-center">
                       <Link href="/auth/register">
-                        <button className="border-2 rounded-md hover:text-white">
+                        <button className="border-2 rounded-md hover:text-white px-2 duration-[0.3s] hover:shadow-lg shadow-cyan-500/50">
                           sign up
                         </button>
                       </Link>

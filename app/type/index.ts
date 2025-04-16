@@ -11,6 +11,7 @@ export interface authPros {
   email: string;
   fullName: string;
   password: string;
+  status: any;
 }
 
 export interface todosPros {

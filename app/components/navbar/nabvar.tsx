@@ -1,6 +1,6 @@
+"use client";
 import Link from "next/link";
 import { LayoutDashboard, LogIn } from "lucide-react";
-
 const Navbar: React.FC = () => {
   return (
     <div className=" flexjustify-center">
@@ -11,15 +11,9 @@ const Navbar: React.FC = () => {
             <LayoutDashboard />
           </div>
         </Link>
-        <Link href="">
+        <Link href="https://github.com/MuliaAndiki/uts-pbw">
           <div className="flex">
-            <h1 className="italic">Dasboard</h1>
-          </div>
-        </Link>
-        <Link href="/auth/login">
-          <div className="flex gap-x-2">
-            <h1 className="italic">Sign In</h1>
-            <LogIn />
+            <h1 className="italic">Github</h1>
           </div>
         </Link>
       </div>
