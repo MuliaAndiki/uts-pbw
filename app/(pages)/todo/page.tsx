@@ -93,32 +93,29 @@ const Todo = () => {
 
   return (
     <>
-      <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-[#0d222f] to-[##070b0a]">
-        {/* Navbar tetap di atas */}
-        <div className="">
+      <div className="h-screen w-screen flex flex-col bg-[#dbdbdb]">
+        <div className="bg-[#0d222f]">
           <Navbar />
         </div>
 
-        {/* Konten Utama */}
         <div className="flex-1 flex justify-center items-center">
           <div className="w-full max-w-4xl px-4">
             <div className="flex flex-col items-center justify-center gap-4">
-              {/* Form Input Todo */}
               <form onSubmit={handleTodo} className="w-full">
                 <label className="block text-3xl font-bold text-center text-gray-800 drop-shadow hover:text-sky-600 transition duration-500 font-mono">
                   TodoList: {curennt ? curennt.fullName : "Guest"}
                 </label>
 
                 <div className="flex flex-wrap items-center gap-x-2 mt-6">
-                  <input
-                    type="text"
-                    className="flex-1 outline-none shadow-md p-3 rounded-md transition duration-300 hover:shadow-sky-400 hover:scale-105 border-b-1"
-                    onChange={(e) => setText(e.target.value)}
-                    placeholder="Masukkan todo kamu..."
-                  />
-
-                  <ListTodo className="text-2xl text-gray-600 hover:text-sky-500 transition duration-300 hover:scale-105" />
-
+                  <div className="flex-1 shadow-md p-3 rounded-md transition duration-300 bg-gray-300 hover:shadow-sky-400 hover:scale-103 border-b-1 flex flex-row justify-end">
+                    <input
+                      type="text"
+                      className="w-[47vw] outline-none"
+                      onChange={(e) => setText(e.target.value)}
+                      placeholder="Masukkan todo kamu..."
+                    />
+                    <ListTodo className="text-2xl text-gray-600 hover:text-sky-500 transition duration-300 hover:scale-105" />
+                  </div>
                   <button
                     type="submit"
                     className="px-4 py-2 rounded-md font-semibold bg-sky-500 text-white hover:bg-sky-600 transition duration-300 hover:scale-105 font-mono"
@@ -136,11 +133,9 @@ const Todo = () => {
                 </div>
               </form>
 
-              {/* Modal muncul jika ada data */}
               {modalData && <Modal {...modalData} />}
 
-              {/* Daftar Todo */}
-              <div className="w-full mt-6 space-y-3 py-4 px-2 shadow-xl rounded-md bg-gray-400 bg-opacity-100 backdrop-blur-sm">
+              <div className="w-full mt-6 space-y-3 py-4 px-2 ">
                 {todos.map((todo, index) => (
                   <Return key={index} todo={todo} index={index} />
                 ))}

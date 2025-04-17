@@ -93,74 +93,76 @@ const Return: React.FC<returnPros> = ({ todo, index }) => {
   };
 
   return (
-    <form className="flex justify-around">
-      <div className="flex gap-x-[1rem]">
-        <input
-          type="checkbox"
-          className="border-2 rounded-md"
-          checked={checklist}
-          onChange={() => setChecklist(!checklist)}
-        />
-        {edit ? (
+    <div className="rounded-md bg-gray-300 bg-opacity-100 backdrop-blur-sm p-1">
+      <form className="flex justify-around">
+        <div className="flex gap-x-[1rem]">
           <input
-            type="text"
-            value={textEdit}
-            onChange={(e) => setTextEdit(e.target.value)}
-            className="border px-2 py-1 rounded-md w-[30vw] p-1"
+            type="checkbox"
+            className="border-2 rounded-md"
+            checked={checklist}
+            onChange={() => setChecklist(!checklist)}
           />
-        ) : (
-          <div className="flex justify-center">
-            <p
-              className={`font-medium  border-b-1 w-[33vw] p-1 rounded-md hover:border-sky-600 duration-[0.3s] shadow-lg hover:shadow-sky-500 ${
-                checklist ? "" : ""
-              }`}
-            >
-              {todo.text}
-            </p>
-          </div>
-        )}
-      </div>
-      <div className="flex gap-[1rem]">
-        {edit ? (
-          <>
+          {edit ? (
+            <input
+              type="text"
+              value={textEdit}
+              onChange={(e) => setTextEdit(e.target.value)}
+              className="border px-2 py-1 rounded-md w-[30vw] p-1"
+            />
+          ) : (
+            <div className="flex justify-center">
+              <p
+                className={`font-medium  border-b-1 w-[33vw] p-1 rounded-md hover:border-sky-600 duration-[0.3s] shadow-lg hover:shadow-sky-500 ${
+                  checklist ? "" : ""
+                }`}
+              >
+                {todo.text}
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="flex gap-[1rem]">
+          {edit ? (
+            <>
+              <button
+                type="button"
+                onClick={handleEdit}
+                className="bg-sky-500 text-white px-2 rounded hover:scale-105 duration-[0.3s] hover:bg-sky-600"
+              >
+                Simpan
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setTextEdit(todo.text), setEdit(false);
+                }}
+                className="bg-gray-500 text-white px-2 rounded duration-[0.3s] hover:scale-105 hover:bg-gray-600 font-mono"
+              >
+                Batal
+              </button>
+            </>
+          ) : (
             <button
               type="button"
-              onClick={handleEdit}
-              className="bg-sky-500 text-white px-2 rounded hover:scale-105 duration-[0.3s] hover:bg-sky-600"
-            >
-              Simpan
-            </button>
-            <button
-              type="button"
+              className="border-b-1 rounded-md px-4 hover:scale-105 duration-[0.3s] p-2 bg-sky-400 text-white hover:bg-sky-600 font-mono "
               onClick={() => {
-                setTextEdit(todo.text), setEdit(false);
+                setEdit(true);
               }}
-              className="bg-gray-500 text-white px-2 rounded duration-[0.3s] hover:scale-105 hover:bg-gray-600 font-mono"
             >
-              Batal
+              Edit
             </button>
-          </>
-        ) : (
+          )}
           <button
             type="button"
-            className="border-b-1 rounded-md px-4 hover:scale-105 duration-[0.3s] p-2 bg-sky-400 text-white hover:bg-sky-600 font-mono "
-            onClick={() => {
-              setEdit(true);
-            }}
+            className="border-b-1 rounded-md px-2 hover:scale-105 duration-[0.3s] bg-red-400 font-semibold text-white hover:bg-red-600 p-2 font-mono"
+            onClick={handleDelete}
           >
-            Edit
+            Hapus
           </button>
-        )}
-        <button
-          type="button"
-          className="border-b-1 rounded-md px-2 hover:scale-105 duration-[0.3s] bg-red-400 font-semibold text-white hover:bg-red-600 p-2 font-mono"
-          onClick={handleDelete}
-        >
-          Hapus
-        </button>
-      </div>
-      {modalData && <Modal {...modalData} />}
-    </form>
+        </div>
+        {modalData && <Modal {...modalData} />}
+      </form>
+    </div>
   );
 };
 
