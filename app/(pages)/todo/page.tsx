@@ -93,7 +93,7 @@ const Todo = () => {
 
   return (
     <>
-      <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-gray-700 to-white">
+      <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-[#0d222f] to-[##070b0a]">
         {/* Navbar tetap di atas */}
         <div className="">
           <Navbar />
