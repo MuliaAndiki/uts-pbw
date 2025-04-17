@@ -13,19 +13,23 @@ const Modal: React.FC<modalProps> = ({
   const showModal = () => {
     Swal.fire({
       title,
-      icon,
       text: deskripsi,
+      icon,
       confirmButtonText,
       confirmButtonColor,
+      background: "#0d222f",
+      color: "#ffffff",
     }).then(() => {
       if (onClose) {
         onClose();
       }
     });
   };
+
   useEffect(() => {
     showModal();
   }, []);
+
   return null;
 };
 

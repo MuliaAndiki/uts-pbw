@@ -93,7 +93,7 @@ const Todo = () => {
 
   return (
     <>
-      <div className="h-screen w-screen flex flex-col bg-[#dbdbdb]">
+      <div className="min-h-screen w-screen flex flex-col bg-[#dbdbdb]">
         <div className="bg-[#0d222f]">
           <Navbar />
         </div>
@@ -102,8 +102,12 @@ const Todo = () => {
           <div className="w-full max-w-4xl px-4">
             <div className="flex flex-col items-center justify-center gap-4">
               <form onSubmit={handleTodo} className="w-full">
-                <label className="block text-3xl font-bold text-center text-gray-800 drop-shadow hover:text-sky-600 transition duration-500 font-mono">
-                  TodoList: {curennt ? curennt.fullName : "Guest"}
+                <label className=" block text-5xl font-bold text-center text-gray-800 drop-shadow font-mono h-[150px]">
+                  Welcome {curennt ? curennt.fullName : "Guest"}
+                  <h1 className="font-normal text-lg mt-3">
+                    Let’s make today productive and move one step closer to your
+                    goals!
+                  </h1>
                 </label>
 
                 <div className="flex flex-wrap items-center gap-x-2 mt-6">
@@ -114,7 +118,7 @@ const Todo = () => {
                       onChange={(e) => setText(e.target.value)}
                       placeholder="Masukkan todo kamu..."
                     />
-                    <ListTodo className="text-2xl text-gray-600 hover:text-sky-500 transition duration-300 hover:scale-105" />
+                    <ListTodo className="text-2xl text-gray-600" />
                   </div>
                   <button
                     type="submit"

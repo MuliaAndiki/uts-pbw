@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { LayoutDashboard } from "lucide-react";
+
 const Navbar: React.FC = () => {
   return (
     <div className=" flexjustify-center">
@@ -15,6 +16,7 @@ const Navbar: React.FC = () => {
           <div className="flex hover:scale-105 duration-[0.3s]">
             <h1 className="font-mono my-3 border-2 border-hidden p-2 px-6 rounded-full hover:bg-white hover:text-black text-white transition duration-300">
               Github
+              <i className="fab fa-github text-xl ml-2"></i>
             </h1>
           </div>
         </Link>
