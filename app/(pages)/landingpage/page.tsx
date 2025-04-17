@@ -1,15 +1,24 @@
 import Navbar from "@/app/components/navbar/nabvar";
+import Link from "next/link";
 
 const LandingPage = () => {
   return (
     <div className="relative w-screen h-screen overflow-hidden">
-      <Navbar />
+      {/* Navbar */}
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Navbar />
+      </div>
 
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style={{ backgroundImage: "url('/bg/desk.jpg')" }}
-      ></div>
+      {/* Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/bg/bg-video2.mp4" // taruh file mp4 di public/videos/bg.mp4
+        autoPlay
+        loop
+        muted
+        playsInline // untuk mobile agar autoplay jalan
+        // poster="/videos/poster.jpg" // opsi: tampilkan gambar sebelum video load
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/20 z-10"></div>
@@ -17,7 +26,7 @@ const LandingPage = () => {
       {/* Konten utama */}
       <div
         className="relative z-20 flex flex-col justify-center items-center text-center px-4"
-        style={{ height: "calc(100vh - 5rem)" }} // pengaturan posisi konten
+        style={{ height: "calc(100vh - 4rem)" }} // pengaturan tinggi konten
       >
         <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-md">
           WELCOME TO OUR WEBSITE
@@ -25,9 +34,13 @@ const LandingPage = () => {
         <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
-        <button className="mt-6 bg-white text-black font-semibold px-6 py-2 rounded-full hover:bg-gray-200 transition">
-          Get Started
-        </button>
+
+        {/* Tombol Get Started */}
+        <Link href="/auth/login">
+          <div className="mt-6 border-2 border-white p-2 px-6 rounded-full hover:bg-white hover:text-black text-white transition duration-300">
+            <button className="italic font-semibold">Get Started</button>
+          </div>
+        </Link>
       </div>
     </div>
   );

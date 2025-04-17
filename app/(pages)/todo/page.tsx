@@ -11,9 +11,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Todo = () => {
-  const { todos, setTodos, token, isloading, id, curennt } = useHook();
+  const { todos, setTodos, token, id, curennt } = useHook();
   const [text, setText] = useState<string>("");
-  const [modaData, setModalData] = useState<modalProps | null>(null);
+  const [modalData, setModalData] = useState<modalProps | null>(null);
   const router = useRouter();
 
   const handleTodo = (e: React.FormEvent) => {
@@ -73,6 +73,7 @@ const Todo = () => {
             localStorage.removeItem("curent");
             localStorage.removeItem("token");
             localStorage.removeItem("id");
+            setTodos([]);
           },
         });
       })
@@ -92,41 +93,60 @@ const Todo = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="h-screen w-screen flex justify-center items-center">
-        <div className="flex justify-center items-center">
-          <div className="flex-col justify-center items-center text-center">
-            <form onSubmit={handleTodo}>
-              <label
-                htmlFor=""
-                className="text-[2rem] font-bold hover:text-sky-400 duration-[1s] "
-              >
-                TodoList : {curennt ? curennt.fullName : "guest"}
-              </label>
-              <div className="flex rounded-md border-2 p-1 w-[80vw] ">
-                <input
-                  type="text"
-                  className="w-[80vw] outline-none"
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="Masukan Todo Kamu..."
-                />
-                <ListTodo />
-                <button
-                  className="border-2 rounded-md px-2 hover:bg-sky-600 duration-[1s] mx-2"
-                  type="submit"
-                >
-                  Submit
-                </button>
+      <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-gray-700 to-white">
+        {/* Navbar tetap di atas */}
+        <div className="">
+          <Navbar />
+        </div>
+
+        {/* Konten Utama */}
+        <div className="flex-1 flex justify-center items-center">
+          <div className="w-full max-w-4xl px-4">
+            <div className="flex flex-col items-center justify-center gap-4">
+              {/* Form Input Todo */}
+              <form onSubmit={handleTodo} className="w-full">
+                <label className="block text-3xl font-bold text-center text-gray-800 drop-shadow hover:text-sky-600 transition duration-500 font-mono">
+                  TodoList: {curennt ? curennt.fullName : "Guest"}
+                </label>
+
+                <div className="flex flex-wrap items-center gap-x-2 mt-6">
+                  <input
+                    type="text"
+                    className="flex-1 outline-none shadow-md p-3 rounded-md transition duration-300 hover:shadow-sky-400 hover:scale-105 border-b-1"
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Masukkan todo kamu..."
+                  />
+
+                  <ListTodo className="text-2xl text-gray-600 hover:text-sky-500 transition duration-300 hover:scale-105" />
+
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-md font-semibold bg-sky-500 text-white hover:bg-sky-600 transition duration-300 hover:scale-105 font-mono"
+                  >
+                    Submit
+                  </button>
+
+                  <button
+                    type="button"
+                    className="px-4 py-2 rounded-md font-semibold bg-red-400 text-white hover:bg-red-500 transition duration-300 hover:scale-105 font-mono"
+                    onClick={handleLoqout}
+                  >
+                    Quit
+                  </button>
+                </div>
+              </form>
+
+              {/* Modal muncul jika ada data */}
+              {modalData && <Modal {...modalData} />}
+
+              {/* Daftar Todo */}
+              <div className="w-full mt-6 space-y-3 py-4 px-2 shadow-xl rounded-md bg-gray-400 bg-opacity-100 backdrop-blur-sm">
+                {todos.map((todo, index) => (
+                  <Return key={index} todo={todo} index={index} />
+                ))}
               </div>
-            </form>
-            {modaData && <Modal {...modaData} />}
-            {todos.map((todo, index) => (
-              <Return key={index} todo={todo} index={index} />
-            ))}
+            </div>
           </div>
-          <button onClick={handleLoqout} className="border-2 rounded-md">
-            Quit
-          </button>
         </div>
       </div>
     </>

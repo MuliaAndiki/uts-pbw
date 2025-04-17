@@ -67,74 +67,70 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="w-screen min-h-screen flex justify-center items-center ">
-        <div className="flex justify-center items-center shadow-lg h-[50vh] w-[50vw] ">
-          <div className="w-[100vh] ">
-            <div className="grid grid-cols-2 grid-rows-1 shadow-lg border-1 rounded-md">
-              <div className=" h-[50vh] flex justify-center items-center ">
-                <div className="flex justify-center items-center">
-                  <form onSubmit={handleLogin}>
-                    <label
-                      htmlFor=""
-                      className="font-bold text-sky-600  hover:shadow-sky-500 text-[3rem] p-2 flex justify-center"
-                    >
-                      Login:
-                    </label>
-                    <div className="">
-                      <div className="m-[1rem]">
-                        <input
-                          type="email"
-                          className="border-1 rounded-md shadow-md w-[13vw] hover:shadow-sky-500 h-[4vh] p-2 outline-none"
-                          placeholder="Email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
+      <div className="relative w-screen h-screen overflow-hidden">
+        {/* Video Background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/bg/bg-video2.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
 
-                      <div className="m-[1rem]">
-                        <input
-                          type="password"
-                          className="border-1 rounded-md shadow-md hover:shadow-sky-500 w-[13vw] h-[4vh] p-2 outline-none"
-                          placeholder="Password"
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </div>
-                      <div className="m-[1rem]">
-                        <button
-                          className="border-2 shadow-lg w-[13vw] rounded-md hover:shadow-sky-500"
-                          type="submit"
-                        >
-                          Login
-                        </button>
-                      </div>
-                    </div>
-                    {modal && <Modal {...modal} />}
-                  </form>
+        {/* Overlay / Content */}
+        <div className=" absolute top-0 left-0 w-full z-20">
+          <Navbar />
+        </div>
+        <div className="absolute inset-0 flex justify-center items-center z-10">
+          <div className="bg-white bg-opacity-80 rounded-lg shadow-lg flex h-[78vh] w-[80vw] max-w-5xl ">
+            {/* Form Section */}
+            <div className="w-1/2 flex justify-center items-center p-6">
+              <form onSubmit={handleLogin} className="w-full max-w-sm">
+                <h2 className="font-bold text-sky-600 text-[2rem] text-center font-mono mb-6">
+                  Login
+                </h2>
+                <div className="mb-4">
+                  <input
+                    type="email"
+                    className="w-full border rounded-md shadow-md p-2 outline-none"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
-              </div>
-              <div className="bg-sky-600 flex justify-center items-center">
-                <div className="flex p-[1rem] justify-center items-center">
-                  {/* <Image src={} alt="" width={} height={} /> */}
-                  <div className="flex-col justify-center items-center">
-                    <h1 className="italic text-center">Todo List</h1>
-                    <p className="text-center">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Corrupti, qui harum. Non quis sequi eum iste voluptate.
-                      Perspiciatis perferendis saepe, molestias ullam soluta
-                      consequatur cupiditate est iure at non eum!
-                    </p>
+                <div className="mb-4">
+                  <input
+                    type="password"
+                    className="w-full border rounded-md shadow-md p-2 outline-none"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full border-2 rounded-md shadow-lg p-2 font-mono hover:shadow-sky-500 transition"
+                >
+                  Login
+                </button>
+                {modal && <Modal {...modal} />}
+              </form>
+            </div>
 
-                    <div className="flex justify-center">
-                      <Link href="/auth/register">
-                        <button className="border-2 rounded-md hover:text-white">
-                          sign up
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="flex justify-center"></div>
-                </div>
-              </div>
+            {/* Info Section */}
+            <div className="w-1/2 bg-sky-600 text-white flex flex-col justify-center items-center p-6 rounded-r-lg">
+              <h1 className="font-mono text-[2rem] mb-3 text-center">
+                Todo List
+              </h1>
+              <p className="text-center font-mono mb-4">
+                “Hari ini, jangan cuma hidup—taklukkan. Satu tugas, satu langkah
+                maju. Gagal gak masalah, asal jangan diam. Ceklist itu bukti
+                kamu bergerak. Let's go, pejuang mimpi!”
+              </p>
+              <Link href="/auth/register">
+                <button className="border-2 rounded-md px-4 py-1 hover:bg-white hover:text-sky-600 transition font-mono">
+                  Sign up
+                </button>
+              </Link>
             </div>
           </div>
         </div>
